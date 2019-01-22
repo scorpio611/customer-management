@@ -7,6 +7,7 @@ import com.codegym.cms.service.ProvinceService;
 import com.codegym.cms.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,7 +47,8 @@ public class CustomerController {
             customers = customerService.findAllByFirstNameContaining(s.get(), pageable);
         }
         else {
-            customers = customerService.findAll(pageable);
+
+            customers = customerService.findAll(new PageRequest(pageable.getPageNumber(), 5));
         }
         ModelAndView modelAndView = new ModelAndView("/customer/list");
         modelAndView.addObject("customers", customers);

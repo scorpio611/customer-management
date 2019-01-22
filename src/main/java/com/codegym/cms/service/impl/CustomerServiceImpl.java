@@ -20,6 +20,10 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
 
     @Override
     public Customer findById(Long id) {
